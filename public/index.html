@@ -1,9 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
     <title>Test</title>
 </head>
 <body>
-html body
+<div class="container">
+    <info></info>
+</div>
+
+<template id="info-tmp">
+    <div class="card">
+        <p>ID: {{id}}</p>
+        <p>Name: {{name}}</p>
+    </div>
+</template>
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/vue.resource/1.0.2/vue-resource.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+<script src="public/js/main.js"></script>
 </body>
 </html>
