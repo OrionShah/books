@@ -15,6 +15,7 @@ $app->get("/", function ($request, $response, $args) {
 
 
 $app->group('/users[/[{id:[0-9]+}/[{name}/]]]', function () {
+    // отправляем все запросы в UserController
     $this->map(['GET', 'POST', 'DELETE', 'PATCH', 'PUT'], '', 'Controllers\UserController');
 });
 

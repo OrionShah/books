@@ -5,6 +5,13 @@ namespace Controllers;
 class UserController extends BaseController
 {
 
+    /**
+     * GET запрос на получение инфы
+     *
+     * @param int $id идентификатор пользователя
+     *
+     * @return array данные
+     */
     public function getInfo($id)
     {
         $id = intval($id);
@@ -14,6 +21,13 @@ class UserController extends BaseController
         ];
     }
 
+    /**
+     * POST запрос на получение инфы
+     *
+     * @param int $id идентификатор пользователя
+     *
+     * @return array данные
+     */
     public function postInfo($id)
     {
         $id = intval($id);
