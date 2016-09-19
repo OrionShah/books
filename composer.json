@@ -1,0 +1,12 @@
+{
+    "autoload": {
+        "psr-0": {
+            "Controllers\\": "api/",
+            "Models\\": "api/",
+            "Helpers\\": "api/"
+        }
+    },
+    "require": {
+        "slim/slim": "^3.0"
+    }
+}
