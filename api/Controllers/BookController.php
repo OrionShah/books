@@ -23,6 +23,7 @@ class BookController extends BaseController
             "id" => intval($id),
             "name" => $book->title,
             "pages" => $book->pages,
+            "current_page" => intval($page),
             "text" => $book->getPage($page)
         ];
     }

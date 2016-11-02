@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="container">
-    <info></info>
+    <book></book>
 </div>
 
 <template id="info-tmp">
@@ -16,6 +16,17 @@
     </div>
 </template>
 
+<template id="book_info">
+    <div class="card">
+        <p>Title: {{name}}</p>
+        <p>Pages: {{pages}}</p>
+        <button class="prev btn" v-on:click="prev" :disabled="!prevBtn">prev</button>
+        {{current_page}}
+        <button class="next btn" v-on:click="next" :disabled="!nextBtn">next</button>
+        <p v-html="text"></p>
+        <!--<p class="text">{{text}}</p>-->
+    </div>
+</template>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
 <script src="https://cdn.jsdelivr.net/vue.resource/1.0.2/vue-resource.min.js"></script>

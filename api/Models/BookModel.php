@@ -9,7 +9,8 @@ class BookModel extends BaseModel
     private $ci = null;
     private $info = [];
 
-    private $per_page = 200;
+    private $per_page = 2000;
+    private $page_length = 20;
 
     public function __construct(\Interop\Container\ContainerInterface $ci, $name)
     {
@@ -25,6 +26,10 @@ class BookModel extends BaseModel
         } else {
             return null;
         }
+    }
+
+    public function __set($name, $value) {
+        $this->info[$name] = $value;
     }
 
     public function loadInfo($name) {
@@ -56,23 +61,25 @@ class BookModel extends BaseModel
             $text .= $sections->item($i)->nodeValue;
         }
 
-        $pages = ceil(strlen($text)/$this->per_page);
+        $lines = explode("\n", wordwrap($text, $this->per_page, "\n"));
+        $pages = ceil(count($lines)/$this->page_length);
+//        $pages = ceil(strlen($text)/$this->per_page);
 
 
         $data = [
             'title' => $book_title,
             'genre_list' => $genres,
             'text' => $text,
-            'pages' => $pages
+            'pages' => $pages,
+            'lines' => $lines
         ];
 
         $this->info = $data;
     }
 
-    public function getPage($page, $page_length=40) {
+    public function getPage($page) {
         $page = $page - 1;
-        $lines = explode("\n", wordwrap($this->text, $this->per_page, "\n"));
-        $page_lines = array_slice($lines, $page*$page_length, $page_length);
-        return implode("\n", $page_lines);
+        $page_lines = array_slice($this->lines, $page*$this->page_length, $this->page_length);
+        return implode("<br>", $page_lines);
     }
 }
