@@ -9,8 +9,8 @@ class BookModel extends BaseModel
     private $ci = null;
     private $info = [];
 
-    private $per_page = 2000;
-    private $page_length = 20;
+    private $line_size = 300;
+    private $page_length = 30;
 
     public function __construct(\Interop\Container\ContainerInterface $ci, $name)
     {
@@ -61,7 +61,10 @@ class BookModel extends BaseModel
             $text .= $sections->item($i)->nodeValue;
         }
 
-        $lines = explode("\n", wordwrap($text, $this->per_page, "\n"));
+//        $lines = explode("<br>", wordwrap($text, $this->per_page, "<br>"));
+//        $words = preg_split("/[ \n]/", $text);
+        $lines = explode("\n", wordwrap($text, $this->line_size, "\n"));
+
         $pages = ceil(count($lines)/$this->page_length);
 //        $pages = ceil(strlen($text)/$this->per_page);
 
@@ -79,7 +82,7 @@ class BookModel extends BaseModel
 
     public function getPage($page) {
         $page = $page - 1;
-        $page_lines = array_slice($this->lines, $page*$this->page_length, $this->page_length);
+        $page_lines = array_slice($this->lines, $page * $this->page_length, $this->page_length);
         return implode("<br>", $page_lines);
     }
 }

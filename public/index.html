@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="container">
-    <book></book>
+    <book v-bind:book_id="1"></book>
 </div>
 
 <template id="info-tmp">
@@ -20,9 +20,11 @@
     <div class="card">
         <p>Title: {{name}}</p>
         <p>Pages: {{pages}}</p>
-        <button class="prev btn" v-on:click="prev" :disabled="!prevBtn">prev</button>
+        <button class="prev btn" v-on:click="getData(1)" :disabled="!prevBtn">Start</button>
+        <button class="prev btn" v-on:click="prev" :disabled="!prevBtn">Prev</button>
         {{current_page}}
-        <button class="next btn" v-on:click="next" :disabled="!nextBtn">next</button>
+        <button class="next btn" v-on:click="next" :disabled="!nextBtn">Next</button>
+        <button class="next btn" v-on:click="getData(pages)" :disabled="!nextBtn">End</button>
         <p v-html="text"></p>
         <!--<p class="text">{{text}}</p>-->
     </div>

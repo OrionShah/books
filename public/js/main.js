@@ -55,10 +55,11 @@
 var book = new Vue({
     el: "book",
     template: "#book_info",
+    props: ['book_id'],
 
     data: function () {
         return {
-            id: null,
+            id: this.book_id,
             name: '',
             pages: 0,
             current_page: 0,
@@ -74,7 +75,7 @@ var book = new Vue({
 
     methods: {
         getData: function (page) {
-            $.getJSON('/api/book/1/page/' + page + '/', function (data) {
+            $.getJSON('/api/book/' + this.id + '/page/' + page + '/', function (data) {
                 this.id = data.id;
                 this.name = data.name;
                 this.pages = data.pages;
