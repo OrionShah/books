@@ -22,5 +22,10 @@ $app->map(
     'Controllers\UserController'
 );
 
+$app->map(
+    ['GET', 'POST', 'DELETE', 'PATCH', 'PUT'],
+    '/book[/[{id:[0-9]+}/[{name}/]]]',
+    'Controllers\BookController'
+);
 
 $app->run();

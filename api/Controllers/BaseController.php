@@ -2,6 +2,8 @@
 
 namespace Controllers;
 
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 class BaseController
 {
@@ -13,6 +15,8 @@ class BaseController
     public function __construct(\Interop\Container\ContainerInterface $ci)
     {
         $this->ci = $ci;
+        $this->logger = new Logger('app');
+        $this->logger->pushHandler(new StreamHandler(STDOUT, Logger::INFO));
     }
 
     public function __invoke($request, $response, $args)
