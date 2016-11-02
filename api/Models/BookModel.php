@@ -69,16 +69,7 @@ class BookModel extends BaseModel
         $this->info = $data;
     }
 
-    public function getPage($num_page) {
-        $start_pos = $this->per_page * $num_page;
-        $text = strip_tags($this->text);
-        $text = mb_substr($text, $start_pos, $this->per_page);
-        $text = mb_substr($text, 0, mb_strripos($text, ' '));
-//        $this->printVal($text);die;
-        return $text;
-    }
-
-    public function getPage2($page, $page_length=40) {
+    public function getPage($page, $page_length=40) {
         $page = $page - 1;
         $lines = explode("\n", wordwrap($this->text, $this->per_page, "\n"));
         $page_lines = array_slice($lines, $page*$page_length, $page_length);
